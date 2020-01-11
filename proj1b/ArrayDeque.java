@@ -1,4 +1,4 @@
-public class ArrayDeque<T> implements Deque<T>{
+public class ArrayDeque<T> implements Deque<T> {
     private T[] items;
     private int size;
     private int nextFirst;
@@ -27,7 +27,7 @@ public class ArrayDeque<T> implements Deque<T>{
         if (size == items.length) {
             expand();
         }
-        if (size < (items.length/4) && items.length > 8) {
+        if (size < (items.length / 4) && items.length > 8) {
             reduce();
         }
     }
@@ -98,19 +98,19 @@ public class ArrayDeque<T> implements Deque<T>{
     }
 
     public int minusOne(int index) {
-        return Math.floorMod(index-1, items.length);
+        return Math.floorMod(index - 1, items.length);
     }
 
     public int plusOne(int index) {
-        return Math.floorMod(index+1, items.length);
+        return Math.floorMod(index + 1, items.length);
     }
 
     public int plusOne(int index, int length) {
-        return Math.floorMod(index+1, length);
+        return Math.floorMod(index + 1, length);
     }
 
     public void printDeque() {
-        for (int index = plusOne(nextFirst); index != nextLast; index = plusOne(index)){
+        for (int index = plusOne(nextFirst); index != nextLast; index = plusOne(index)) {
             System.out.print(items[index]);
             System.out.print(" ");
         }
@@ -120,8 +120,8 @@ public class ArrayDeque<T> implements Deque<T>{
         if (index < 0 || index >= size) {
             return null;
         }
-        index = Math.floorMod(nextFirst+index+1, items.length);
-        return(items[index]);
+        index = Math.floorMod(nextFirst + index + 1, items.length);
+        return (items[index]);
     }
 
     public static void main(String[] args) {
@@ -129,7 +129,7 @@ public class ArrayDeque<T> implements Deque<T>{
         for (int i = 0; i < 30; i++) {
             arrayDeque.addLast(i);
         }
-        for (int i = 0; i < 24; i++){
+        for (int i = 0; i < 24; i++) {
             arrayDeque.addFirst(i);
         }
         arrayDeque.printDeque();

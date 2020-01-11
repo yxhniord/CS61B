@@ -1,9 +1,9 @@
-public class LinkedListDeque<T> implements Deque<T>{
+public class LinkedListDeque<T> implements Deque<T> {
     private class TNode {
-        public T item;
-        public TNode prev;
-        public TNode next;
-        public TNode(T x, TNode p, TNode n) {
+        private T item;
+        private TNode prev;
+        private TNode next;
+        TNode(T x, TNode p, TNode n) {
             item = x;
             prev = p;
             next = n;
@@ -13,15 +13,15 @@ public class LinkedListDeque<T> implements Deque<T>{
     private TNode sentinel;
     private int size;
 
-    public LinkedListDeque () {
-        sentinel = new TNode((T)"null", null, null);
+    public LinkedListDeque() {
+        sentinel = new TNode((T) "null", null, null);
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
         size = 0;
     }
 
     public LinkedListDeque(T item) {
-        sentinel = new TNode((T)"null", null, null);
+        sentinel = new TNode((T) "null", null, null);
         sentinel.next = new TNode(item, sentinel, sentinel);
         sentinel.prev = sentinel.next;
         size = 1;
@@ -108,7 +108,7 @@ public class LinkedListDeque<T> implements Deque<T>{
         if (index == count) {
             return ptr.item;
         }
-        return getRecursiveHelper(index, count+1, ptr.next);
+        return getRecursiveHelper(index, count + 1, ptr.next);
     }
 
     public T getRecursive(int index) {
