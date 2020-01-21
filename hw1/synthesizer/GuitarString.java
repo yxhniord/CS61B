@@ -20,7 +20,7 @@ public class GuitarString {
         //       cast the result of this divsion operation into an int. For better
         //       accuracy, use the Math.round() function before casting.
         //       Your buffer should be initially filled with zeros.
-        buffer = new ArrayRingBuffer<> ((int) Math.round(SR / frequency));
+        buffer = new ArrayRingBuffer<>((int) Math.round(SR / frequency));
         for (int i = 0; i < buffer.capacity(); i++) {
             buffer.enqueue(0.0);
         }
@@ -34,7 +34,7 @@ public class GuitarString {
         //       double r = Math.random() - 0.5;
         //
         //       Make sure that your random numbers are different from each other.
-        for (int i = 0; i < buffer.capacity(); i++){
+        for (int i = 0; i < buffer.capacity(); i++) {
             buffer.dequeue();
             buffer.enqueue(Math.random() - 0.5);
         }
