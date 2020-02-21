@@ -34,8 +34,13 @@ public class MergeSort {
     /** Returns a queue of queues that each contain one item from items. */
     private static <Item extends Comparable> Queue<Queue<Item>>
             makeSingleItemQueues(Queue<Item> items) {
-        // Your code here!
-        return null;
+        Queue<Queue<Item>> queues = new Queue<>();
+        for (Item item : items) {
+            Queue<Item> queue = new Queue<>();
+            queue.enqueue(item);
+            queues.enqueue(queue);
+        }
+        return queues;
     }
 
     /**
@@ -53,14 +58,57 @@ public class MergeSort {
      */
     private static <Item extends Comparable> Queue<Item> mergeSortedQueues(
             Queue<Item> q1, Queue<Item> q2) {
-        // Your code here!
-        return null;
+        Queue<Item> mergeSortedQueues = new Queue<>();
+        int mergeSortedQueuesSize = q1.size() + q2.size();
+        for (int i = 0; i < mergeSortedQueuesSize; i++) {
+            mergeSortedQueues.enqueue(getMin(q1, q2));
+        }
+        return mergeSortedQueues;
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
-        // Your code here!
-        return items;
+        if (items.size() <= 1) {
+            return items;
+        }
+        /*Queue<Queue<Item>> queues = makeSingleItemQueues(items);
+        Queue<Item> qLeft = new Queue<>();
+        Queue<Item> qRight = new Queue<>();
+        int leftSize = queues.size() / 2;
+        int rightSize = queues.size() - queues.size() / 2;
+        for (int i = 0; i < leftSize; i++) {
+            qLeft.enqueue(queues.dequeue().dequeue());
+        }
+        for (int i = 0; i < rightSize; i++) {
+            qRight.enqueue(queues.dequeue().dequeue());
+        }*/
+        Queue<Item> qLeft = new Queue<>();
+        Queue<Item> qRight = new Queue<>();
+        int leftSize = items.size() / 2;
+        int rightSize = items.size() - items.size() / 2;
+        for (int i = 0; i < leftSize; i++) {
+            qLeft.enqueue(items.dequeue());
+        }
+        for (int i = 0; i < rightSize; i++) {
+            qRight.enqueue(items.dequeue());
+        }
+        Queue<Item> q1 = mergeSort(qLeft);
+        Queue<Item> q2 = mergeSort(qRight);
+        return mergeSortedQueues(q1, q2);
+    }
+
+    public static void main(String[] args) {
+        Queue<String> students = new Queue<>();
+        students.enqueue("Alice");
+        students.enqueue("Vanessa");
+        students.enqueue("Ethan");
+        students.enqueue("Benjamin");
+        students.enqueue("Tomas");
+        System.out.println(students.toString());
+        Queue<String> sortedStudents = mergeSort(students);
+        System.out.println(sortedStudents.toString());
     }
 }
+
+
