@@ -83,6 +83,7 @@ public class QuickSort {
         students.enqueue("Ethan");
         students.enqueue("Benjamin");
         students.enqueue("Tomas");
+        students.enqueue("Benjamin");
         System.out.println(students.toString());
         Queue<String> sortedStudents = quickSort(students);
         System.out.println(sortedStudents.toString());
